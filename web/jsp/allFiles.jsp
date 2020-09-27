@@ -1,6 +1,7 @@
 <%@ page import="models.User" %>
 <%@ page import="models.Folder" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="models.UserFile" %><%--
   Created by IntelliJ IDEA.
   User: Acer
   Date: 16.09.2020
@@ -16,7 +17,7 @@
 <%
     User user = (User) session.getAttribute("user");
     List<Folder> folders = (List<Folder>) request.getAttribute("folders");
-
+    List<UserFile> files = (List<UserFile>) request.getRequestDispatcher("files");
 %>
 <html>
 <head>
@@ -96,8 +97,21 @@
                     for(Folder folder : folders){
             %>
             <tr>
-                <td class="px-4 py-3"><%=folder.getName()%></td>
+                <td class="px-4 py-3"><a href="<%=request.getContextPath()%>/LoadSub?id=<%=folder.getId()%>"><%=folder.getName()%></a></td>
                 <td class="px-4 py-3"><%="Size"%></td>
+                <td class="px-4 py-3"><%="Download link"%></td>
+            </tr>
+            <%
+                    }
+                }
+            %>
+            <%
+                if(files!=null){
+                    for(UserFile file : files){
+            %>
+            <tr>
+                <td class="px-4 py-3"><%=file.getName()</td>
+                <td class="px-4 py-3"><%=file.getSize()%></td>
                 <td class="px-4 py-3"><%="Download link"%></td>
             </tr>
             <%

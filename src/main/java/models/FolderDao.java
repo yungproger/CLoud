@@ -41,6 +41,28 @@ public class FolderDao {
         }
     }
 
+    public List<Folder> getSubfolders(long parent_id){
+        try {
+            String sql = "SELECT * from folders " +
+                    "WHERE parent_id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setLong(1, parent_id);
+            ResultSet rs = stmt.executeQuery();
+            List<Folder> folders = new ArrayList<Folder>();
+            while (rs.next()) {
+                folders.add(new Folder(
+                        rs.getLong("id"),
+                        rs.getString("name"),
+                        rs.getLong("parent_id")
+                ));
+            }
+            return folders;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
     public List<Folder> getUserFolders(User user){
         try {
             String sql = "SELECT folders.id,folders.name,folders.parent_id from folders " +
