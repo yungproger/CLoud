@@ -1,7 +1,5 @@
-package assignment;
+package controllers;
 
-import models.FolderDao;
-import models.User;
 import models.UserFile;
 import models.UserFileDaO;
 
@@ -27,13 +25,13 @@ public class FileUpload extends HttpServlet {
         Part part = request.getPart("file");
         String fileName = part.getSubmittedFileName();
         long folderId =(Long) request.getSession().getAttribute("id");
-        String path = "C:\\Users\\Acer\\Desktop\\универ\\Джава\\CLoud\\src\\main\\java\\files";
+        String path = "C:\\Users\\acer\\Desktop\\CLoud\\src\\main\\java\\files";
         UserFileDaO userFileDaO = UserFileDaO.getInstance();
         userFileDaO.addUserFile(new UserFile(fileName,folderId,path+"\\" + fileName,String.valueOf(part.getSize())));
         for(Part part1 : request.getParts()){
             part1.write(path + "\\" + fileName);
         }
-
+        response.sendRedirect(request.getContextPath() + "/LoadSub?id=" + (Long) request.getSession().getAttribute("id"));
     }
 
 

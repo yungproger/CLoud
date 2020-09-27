@@ -1,8 +1,6 @@
-package assignment;
+package controllers;
 
-import models.Folder;
 import models.FolderDao;
-import models.UserFileDaO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,9 +18,11 @@ public class FolderDelete extends HttpServlet {
             long fileId = Integer.parseInt(req.getParameter("id"));
             FolderDao folderDao = FolderDao.getInstance();
             folderDao.deleteFolder(fileId);
+            resp.sendRedirect(req.getContextPath() + "/LoadSub?id=" + (Long) req.getSession().getAttribute("id"));
         }catch (Exception e){
             PrintWriter writer = resp.getWriter();
             writer.print("Couldn't delete folder");
         }
+
     }
 }

@@ -1,4 +1,4 @@
-package assignment;
+package controllers;
 
 import models.User;
 import models.UserDao;

@@ -1,4 +1,4 @@
-package assignment;
+package controllers;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +12,6 @@ public class Logout extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         request.getSession().invalidate();
         response.sendRedirect(request.getContextPath() + "/jsp/login.jsp");
     }

@@ -11,6 +11,11 @@ public class Folder {
         this.parent_id = parent_id;
     }
 
+    public Folder( String name, long parent_id) {
+        this.name = name;
+        this.parent_id = parent_id;
+    }
+
     public long getId() {
         return id;
     }

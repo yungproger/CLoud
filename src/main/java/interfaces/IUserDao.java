@@ -1,4 +1,6 @@
-package models;
+package interfaces;
+
+import models.User;
 
 public interface IUserDao {
     void addUser(User user);

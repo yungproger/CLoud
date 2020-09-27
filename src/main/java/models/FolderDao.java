@@ -1,10 +1,12 @@
 package models;
 
+import interfaces.IFolderDao;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FolderDao {
+public class FolderDao implements IFolderDao {
     Connection conn;
     private static FolderDao instance = null;
 

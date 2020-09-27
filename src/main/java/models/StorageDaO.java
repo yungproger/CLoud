@@ -1,11 +1,13 @@
 package models;
 
+import interfaces.IStorageDao;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class StorageDaO {
+public class StorageDaO implements IStorageDao {
     Connection conn;
     private static StorageDaO instance = null;
 

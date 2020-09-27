@@ -1,4 +1,4 @@
-package assignment;
+package controllers;
 
 import models.Folder;
 import models.FolderDao;

@@ -9,7 +9,7 @@
     </context-param>
     <servlet>
         <servlet-name>SignUp</servlet-name>
-        <servlet-class>assignment.SignUp</servlet-class>
+        <servlet-class>controllers.SignUp</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>SignUp</servlet-name>
@@ -17,7 +17,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>SignIn</servlet-name>
-        <servlet-class>assignment.SignIn</servlet-class>
+        <servlet-class>controllers.SignIn</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>SignIn</servlet-name>
@@ -25,7 +25,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>LoadUserFiles</servlet-name>
-        <servlet-class>assignment.LoadUserFiles</servlet-class>
+        <servlet-class>controllers.LoadUserFiles</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoadUserFiles</servlet-name>
@@ -33,7 +33,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>LoadSub</servlet-name>
-        <servlet-class>assignment.LoadSub</servlet-class>
+        <servlet-class>controllers.LoadSub</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoadSub</servlet-name>
@@ -41,7 +41,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>Search</servlet-name>
-        <servlet-class>assignment.Search</servlet-class>
+        <servlet-class>controllers.Search</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Search</servlet-name>
@@ -49,7 +49,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>FileUpload</servlet-name>
-        <servlet-class>assignment.FileUpload</servlet-class>
+        <servlet-class>controllers.FileUpload</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>FileUpload</servlet-name>
@@ -57,7 +57,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>Logout</servlet-name>
-        <servlet-class>assignment.Logout</servlet-class>
+        <servlet-class>controllers.Logout</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Logout</servlet-name>

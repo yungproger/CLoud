@@ -1,7 +1,6 @@
-package assignment;
+package controllers;
 
-import models.User;
-import models.UserDao;
+import models.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,6 +28,14 @@ public class SignUp extends HttpServlet {
         user.setPassword(password);
         UserDao userDao = UserDao.getInstance();
         userDao.addUser(user);
+//        FolderDao folderDao = FolderDao.getInstance();
+//        StorageDaO storageDaO = StorageDaO.getInstance();
+//        user = userDao.getUserByEmail(email);
+//        Folder folder = new Folder("root",0);
+//        folderDao.addFolder(folder);
+//        storageDaO.addStorage(folder);
+
+
 
         response.sendRedirect(request.getContextPath() + "/jsp/login.jsp");
 

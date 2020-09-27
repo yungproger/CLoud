@@ -1,10 +1,12 @@
 package models;
 
+import interfaces.IUserFileDao;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserFileDaO {
+public class UserFileDaO implements IUserFileDao {
 
     Connection conn;
     private static UserFileDaO instance = null;
@@ -21,7 +23,7 @@ public class UserFileDaO {
 
         try {
             Class.forName("org.postgresql.Driver");
-            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres","1234");
+            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres","2092002B");
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         } catch (ClassNotFoundException e) {

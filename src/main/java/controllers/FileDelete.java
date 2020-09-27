@@ -1,4 +1,4 @@
-package assignment;
+package controllers;
 
 import models.UserFileDaO;
 
@@ -18,6 +18,9 @@ public class FileDelete extends HttpServlet {
             long fileId = Integer.parseInt(req.getParameter("id"));
             UserFileDaO userFileDaO = UserFileDaO.getInstance();
             userFileDaO.deleteFile(fileId);
+
+            resp.sendRedirect(req.getContextPath() + "/LoadSub?id=" + (Long) req.getSession().getAttribute("id"));
+
         }catch (Exception e){
             PrintWriter writer = resp.getWriter();
             writer.print("Couldn't delete file");

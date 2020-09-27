@@ -20,7 +20,10 @@
     folders = (List<Folder>) request.getAttribute("folders");
     files = (List<UserFile>) request.getAttribute("files");
     User user = (User) session.getAttribute("user");
-    String pageString = page.toString();
+    if(user==null){
+        response.sendRedirect(request.getContextPath()+"/jsp/login.jsp");
+    }
+    String pageString = page.getClass().getName().toString();
 
 %>
 <html>
@@ -69,7 +72,7 @@
          <%-- Inputs for file upload and folder create--%>
         <div>
             <input class="p-2 md:w-1/2 sm:w-1/2 w-full" type="image" src="${pageContext.request.contextPath}/jsp/img/upload.png" style="width: 6%" style="display: block"id="img">
-            <input class="p-2 md:w-1/2 sm:w-1/2 w-full" type="image" src="${pageContext.request.contextPath}/jsp/img/create_folder.png" style="width: 5%" style="display: block" id="fold">
+            <input class="p-2 md:w-1/2 sm:w-1/2 w-full" type="image" src="${pageContext.request.contextPath}/jsp/img/create_folder.png" style="width: 5%" style="display: block" id="fold" >
         </div>
     </div>
 </div>
@@ -80,7 +83,7 @@
     </form>
 </div>
 <div id="cre" style="display: none; margin-right: 30%; width: 40%" class="lg:w-1/1 md:w-2/6 bg-gray-200 rounded-lg p-3 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
-    <form action="${pageContext.request.contextPath}/createFolder" method="get" enctype="multipart/form-data" >
+    <form action="${pageContext.request.contextPath}/createFolder" method="post" >
         Enter name of folder:<input class="bg-white rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4" type="text" name="folder_name"/><br/>
         <input type="submit" value="Create">
     </form>
@@ -128,7 +131,7 @@
             <tr>
                 <td class="px-4 py-3" style="width: 5%;"><img  src="${pageContext.request.contextPath}/jsp/img/file2.jpg" alt="File"></td>
                 <td class="px-4 py-3"><%=file.getName()%></td>
-                <td class="px-4 py-3"><%=file.getSize()%></td>
+                <td class="px-4 py-3"><%=(Integer.parseInt(file.getSize()))/1000%></td>
                 <td class="px-4 py-3"><a href="<%=request.getContextPath()%>/fileDownload?id=<%=file.getId()%>">Download</a></td>
                 <td class="px-4 py-3"><a href="<%=request.getContextPath()%>/fileDelete?id=<%=file.getId()%>">Delete</a></td>
             </tr>
@@ -139,12 +142,8 @@
             </tbody>
         </table>
     </div>
-    <div class="flex pl-4 mt-4 lg:w-2/3 w-full mx-auto">
-        <a class="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">Learn More
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-        </a>
+    <div class="flex pl-4 mt-4 lg:w-2/3 w-full center-pill mx-auto">
+        <p><%=pageString%></p>
     </div>
 </section>
 </body>
