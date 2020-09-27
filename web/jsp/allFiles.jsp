@@ -1,7 +1,8 @@
 <%@ page import="models.User" %>
 <%@ page import="models.Folder" %>
 <%@ page import="java.util.List" %>
-<%@ page import="models.UserFile" %><%--
+<%@ page import="models.UserFile" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: Acer
   Date: 16.09.2020
@@ -12,12 +13,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%!
-
+    List<Folder> folders = new ArrayList<>();
+    List<UserFile> files = new ArrayList<>();
 %>
 <%
+    folders = (List<Folder>) request.getAttribute("folders");
+    files = (List<UserFile>) request.getAttribute("files");
     User user = (User) session.getAttribute("user");
-    List<Folder> folders = (List<Folder>) request.getAttribute("folders");
-    List<UserFile> files = (List<UserFile>) request.getRequestDispatcher("files");
+
 %>
 <html>
 <head>
@@ -57,9 +60,9 @@
 <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900" style="text-align: center">All files</h1>
 <div class="container mx-auto flex flex-col px-5 py-24 justify-center items-center">
     <div class="flex w-full justify-center" style="margin-left: 50%">
-        <form class="flex w-full justify-center"  method="post" action="">
-            <input name="file" class="border-0 bg-gray-100 rounded mr-4 border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 lg:w-full xl:w-1/2 w-2/4 md:w-full" placeholder="Placeholder" type="text" style="width: 100%">
-            <input class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg" value="Search" style="width: 20%">
+        <form class="flex w-full justify-center"  method="post" action="${pageContext.request.contextPath}/search">
+            <input name="file" class="border-0 bg-gray-100 rounded mr-4 border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 lg:w-full xl:w-1/2 w-2/4 md:w-full" placeholder="Search..." type="text" style="width: 100%">
+            <input class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg" value="Search" style="width: 20%" type="submit">
         </form>
         <div>
             <input class="p-2 md:w-1/2 sm:w-1/2 w-full" type="image" src="img/upload.png" style="width: 6%" style="display: block"id="img">
@@ -68,8 +71,8 @@
     </div>
 </div>
 <div id="up" style="display: none; margin-right: 30%;width: 40% " class="lg:w-1/1 md:w-2/6 bg-gray-200 rounded-lg p-3 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
-    <form action="" method="post" enctype="multipart/form-data" >
-        Select Folder:<input class="bg-white rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4" type="file" name="file"/><br/>
+    <form action="${pageContext.request.contextPath}/fileUpload" method="post" enctype="multipart/form-data" >
+        Select File:<input class="bg-white rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4" type="file" name="file" ><br/>
         <input type="submit" value="Upload">
     </form>
 </div>
@@ -88,6 +91,7 @@
                 <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200 rounded-tl rounded-bl">Name</th>
                 <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200">Size</th>
                 <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200">Download</th>
+                <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200">Delete</th>
 
             </tr>
             </thead>
@@ -99,20 +103,24 @@
             <tr>
                 <td class="px-4 py-3"><a href="<%=request.getContextPath()%>/LoadSub?id=<%=folder.getId()%>"><%=folder.getName()%></a></td>
                 <td class="px-4 py-3"><%="Size"%></td>
-                <td class="px-4 py-3"><%="Download link"%></td>
+                <td class="px-4 py-3"></td>
+                <td class="px-4 py-3"><a href="">Delete</a></td>
             </tr>
             <%
                     }
                 }
             %>
+
+
             <%
                 if(files!=null){
                     for(UserFile file : files){
             %>
             <tr>
-                <td class="px-4 py-3"><%=file.getName()</td>
+                <td class="px-4 py-3"><%=file.getName()%></td>
                 <td class="px-4 py-3"><%=file.getSize()%></td>
-                <td class="px-4 py-3"><%="Download link"%></td>
+                <td class="px-4 py-3"><a href="<%=request.getContextPath()%>/fileDownload?id=<%=file.getId()%>"><%="Download link"%></a></td>
+                <td class="px-4 py-3"><a href="">Delete</a></td>
             </tr>
             <%
                     }

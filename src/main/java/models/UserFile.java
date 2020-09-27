@@ -10,6 +10,28 @@ public class UserFile {
     public UserFile() {
     }
 
+    public UserFile(String name,long folder_id ,String path, String size) {
+        this.name = name;
+        this.path = path;
+        this.folder_id = folder_id;
+        this.size = size;
+    }
+
+    public UserFile(long id, String name, String path, String size) {
+        this.id = id;
+        this.name = name;
+        this.path = path;
+        this.size = size;
+    }
+
+    public UserFile(long id, String name, String path, String size, long folder_id) {
+        this.id = id;
+        this.name = name;
+        this.path = path;
+        this.size = size;
+        this.folder_id = folder_id;
+    }
+
     public UserFile(String name, String path, String size) {
         this.name = name;
         this.path = path;

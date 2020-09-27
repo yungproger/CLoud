@@ -1,6 +1,8 @@
 package models;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserFileDaO {
 
@@ -27,17 +29,20 @@ public class UserFileDaO {
         }
     }
 
-    public UserFile searchFileByName(String file) {
+
+    public UserFile getFileById(long id){
         try {
-            String sql = "select name, path, size from file where name = ?";
+            String sql = "select * from user_files where id = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, file);
+            stmt.setLong(1, id);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 return new UserFile(
+                        rs.getLong("id"),
                         rs.getString("name"),
                         rs.getString("path"),
-                        rs.getString("size")
+                        rs.getString("size"),
+                        rs.getLong("folder_id")
                 );
             }
         } catch (SQLException ex) {
@@ -46,19 +51,60 @@ public class UserFileDaO {
         return null;
     }
 
-    public UserFile getFilesbyFolderId(Long id) {
+
+    public void addUserFile(UserFile userFile){
         try {
-            String sql = "select name, path, size from file where id = ?";
+            String sql = "INSERT INTO user_files(name,folder_id,path,size) " +
+                    "VALUES(?, ?, ?,?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setLong(1, id);
+            stmt.setString(1, userFile.getName());
+            stmt.setLong(2, userFile.getFolder_id());
+            stmt.setString(3, userFile.getPath());
+            stmt.setString(4,userFile.getSize());
+            stmt.execute();
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
+    }
+
+    public List<UserFile> searchFileByName(String file) {
+        try {
+            String sql = "select * from user_files where name = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, file);
             ResultSet rs = stmt.executeQuery();
+            List<UserFile> files = new ArrayList<UserFile>();
             while (rs.next()) {
-                return new UserFile(
+               files.add(new UserFile(
                         rs.getString("name"),
                         rs.getString("path"),
                         rs.getString("size")
-                );
+                ));
             }
+            return files;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<UserFile> getFilesByFolderId(Long id) {
+        try {
+            String sql = "select * from user_files where folder_id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setLong(1, id);
+            ResultSet rs = stmt.executeQuery();
+            List<UserFile> files = new ArrayList<UserFile>();
+            while (rs.next()) {
+                 files.add(new UserFile(
+                        rs.getLong("id"),
+                        rs.getString("name"),
+                        rs.getString("path"),
+                        rs.getString("size"),
+                        rs.getLong("folder_id")
+                ));
+            }
+            return files;
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
