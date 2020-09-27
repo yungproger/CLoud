@@ -31,4 +31,12 @@
         <servlet-name>LoadUserFiles</servlet-name>
         <url-pattern>/LoadUserFiles</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>LoadSub</servlet-name>
+        <servlet-class>assignment.LoadSub</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoadSub</servlet-name>
+        <url-pattern>/LoadSub</url-pattern>
+    </servlet-mapping>
 </web-app>
