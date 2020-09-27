@@ -24,6 +24,7 @@ public class SignIn extends HttpServlet {
         String password = request.getParameter("password");
         UserDao userDao = UserDao.getInstance();
         User user = userDao.getUserByEmail(email);
+        PrintWriter writer = response.getWriter();
         if(user!=null){
             if(user.getPassword().equals(password)){
                 HttpSession session = request.getSession(true);
@@ -31,9 +32,10 @@ public class SignIn extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/jsp/main.jsp");
             }else{
 
+                writer.append("Incorrect username or password!");
             }
         }else{
-
+                writer.append("Incorrect username");
         }
 
     }

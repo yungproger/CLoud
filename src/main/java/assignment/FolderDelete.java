@@ -1,5 +1,7 @@
 package assignment;
 
+import models.Folder;
+import models.FolderDao;
 import models.UserFileDaO;
 
 import javax.servlet.ServletException;
@@ -10,17 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "FileDelete", urlPatterns = "/fileDelete")
-public class FileDelete extends HttpServlet {
+@WebServlet(name = "FolderDelete", urlPatterns = "/folderDelete")
+public class FolderDelete extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             long fileId = Integer.parseInt(req.getParameter("id"));
-            UserFileDaO userFileDaO = UserFileDaO.getInstance();
-            userFileDaO.deleteFile(fileId);
+            FolderDao folderDao = FolderDao.getInstance();
+            folderDao.deleteFolder(fileId);
         }catch (Exception e){
             PrintWriter writer = resp.getWriter();
-            writer.print("Couldn't delete file");
+            writer.print("Couldn't delete folder");
         }
     }
 }

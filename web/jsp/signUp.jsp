@@ -20,6 +20,8 @@
         </div>
         <div class="lg:w-2/6 md:w-1/2 bg-gray-200 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0" id="regg" >
             <h2 class="text-gray-900 text-lg font-medium title-font mb-5">Sign Up</h2>
+
+            <%--Register Form--%>
             <form method="post" action="${pageContext.request.contextPath}/signUp">
                 <input class="bg-white rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4" placeholder="Full Name" type="text" name="fullName">
                 <input class="bg-white rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4" placeholder="Email" type="email" name="email">

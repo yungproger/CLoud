@@ -12,6 +12,8 @@
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
+<%-- Main Page --%>
+
 <%@include file="header.jsp"%>
 <section class="text-gray-700 body-font">
     <div class="container px-5 py-24 mx-auto">

@@ -67,6 +67,15 @@ public class UserFileDaO {
         }
     }
 
+    public void deleteFile(long id) throws Exception{
+
+            String sql = "DELETE from user_files WHERE id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setLong(1, id);
+            stmt.execute();
+
+    }
+
     public List<UserFile> searchFileByName(String file) {
         try {
             String sql = "select * from user_files where name = ?";

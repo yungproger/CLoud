@@ -26,13 +26,12 @@ public class FileUpload extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         Part part = request.getPart("file");
         String fileName = part.getSubmittedFileName();
-
         long folderId =(Long) request.getSession().getAttribute("id");
         String path = "C:\\Users\\acer\\Desktop\\CLoud\\src\\main\\java\\files";
         UserFileDaO userFileDaO = UserFileDaO.getInstance();
         userFileDaO.addUserFile(new UserFile(fileName,folderId,path+"\\" + fileName,String.valueOf(part.getSize())));
         for(Part part1 : request.getParts()){
-            part.write(path + "\\" + fileName);
+            part1.write(path + "\\" + fileName);
         }
 
     }

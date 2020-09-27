@@ -68,7 +68,11 @@ public class FolderDao {
             String sql = "SELECT folders.id,folders.name,folders.parent_id from folders " +
                     "WHERE parent_id = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setLong(1, getRootId(user.getId()));
+            long root_id = getRootId(user.getId());
+            if(root_id==0){
+                throw new Exception();
+            }
+            stmt.setLong(1, root_id);
             ResultSet rs = stmt.executeQuery();
             List<Folder> folders = new ArrayList<Folder>();
             while (rs.next()) {
@@ -79,10 +83,19 @@ public class FolderDao {
                 ));
             }
             return folders;
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         return null;
+    }
+
+    public void deleteFolder(long id) throws Exception{
+
+        String sql = "DELETE from folders WHERE id = ?";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setLong(1, id);
+        stmt.execute();
+
     }
 
     public long getRootId(long user_Id) {
