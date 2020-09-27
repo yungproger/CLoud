@@ -45,4 +45,23 @@ public class UserFileDaO {
         }
         return null;
     }
+
+    public UserFile getFilesbyFolderId(Long id) {
+        try {
+            String sql = "select name, path, size from file where id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setLong(1, id);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                return new UserFile(
+                        rs.getString("name"),
+                        rs.getString("path"),
+                        rs.getString("size")
+                );
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
 }
