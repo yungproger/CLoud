@@ -7,6 +7,15 @@ public class UserFile {
     private String path;
     private String size;
 
+    public UserFile() {
+    }
+
+    public UserFile(String name, String path, String size) {
+        this.name = name;
+        this.path = path;
+        this.size = size;
+    }
+
     public long getId() {
         return id;
     }

@@ -55,22 +55,24 @@
 <%@include file="header.jsp"%>
 <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900" style="text-align: center">All files</h1>
 <div class="container mx-auto flex flex-col px-5 py-24 justify-center items-center">
-    <div class="flex w-full justify-center" style="margin-left: 800px">
-        <input class="border-0 bg-gray-100 rounded mr-4 border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 lg:w-full xl:w-1/2 w-2/4 md:w-full" placeholder="Placeholder" type="text">
-        <button class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Search</button>
+    <div class="flex w-full justify-center" style="margin-left: 50%">
+        <form class="flex w-full justify-center"  method="post" action="">
+            <input name="file" class="border-0 bg-gray-100 rounded mr-4 border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 lg:w-full xl:w-1/2 w-2/4 md:w-full" placeholder="Placeholder" type="text" style="width: 100%">
+            <input class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg" value="Search" style="width: 20%">
+        </form>
         <div>
             <input class="p-2 md:w-1/2 sm:w-1/2 w-full" type="image" src="img/upload.png" style="width: 6%" style="display: block"id="img">
             <input class="p-2 md:w-1/2 sm:w-1/2 w-full" type="image" src="img/create_folder.png" style="width: 5%" style="display: block" id="fold">
         </div>
     </div>
 </div>
-<div id="up" style="display: none; margin-right: 30%; " class="lg:w-1/1 md:w-2/6 bg-gray-200 rounded-lg p-3 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
+<div id="up" style="display: none; margin-right: 30%;width: 40% " class="lg:w-1/1 md:w-2/6 bg-gray-200 rounded-lg p-3 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
     <form action="" method="post" enctype="multipart/form-data" >
         Select Folder:<input class="bg-white rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4" type="file" name="file"/><br/>
         <input type="submit" value="Upload">
     </form>
 </div>
-<div id="cre" style="display: none; margin-right: 30%;" class="lg:w-1/1 md:w-2/6 bg-gray-200 rounded-lg p-3 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
+<div id="cre" style="display: none; margin-right: 30%; width: 40%" class="lg:w-1/1 md:w-2/6 bg-gray-200 rounded-lg p-3 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
     <form action="" method="post" enctype="multipart/form-data" >
         Enter name of folder:<input class="bg-white rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4" type="text" name="folder_name"/><br/>
         <input type="submit" value="Create">
