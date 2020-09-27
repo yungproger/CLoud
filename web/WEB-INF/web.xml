@@ -23,4 +23,12 @@
         <servlet-name>SignIn</servlet-name>
         <url-pattern>/signIn</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>LoadUserFiles</servlet-name>
+        <servlet-class>assignment.LoadUserFiles</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoadUserFiles</servlet-name>
+        <url-pattern>/LoadUserFiles</url-pattern>
+    </servlet-mapping>
 </web-app>

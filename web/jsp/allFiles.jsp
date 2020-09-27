@@ -1,11 +1,23 @@
-<%--
+<%@ page import="models.User" %>
+<%@ page import="models.Folder" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: Acer
   Date: 16.09.2020
   Time: 0:43
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%!
+
+%>
+<%
+    User user = (User) session.getAttribute("user");
+    List<Folder> folders = (List<Folder>) request.getAttribute("folders");
+
+%>
 <html>
 <head>
     <title>Title</title>
@@ -72,39 +84,24 @@
             <tr>
                 <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200 rounded-tl rounded-bl">Name</th>
                 <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200">Size</th>
-                <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200">Sdkjd</th>
-                <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200">Jkksmm</th>
+                <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200">Download</th>
+
             </tr>
             </thead>
             <tbody>
+            <%
+                if(folders!=null){
+                    for(Folder folder : folders){
+            %>
             <tr>
-                <td class="px-4 py-3">Start</td>
-                <td class="px-4 py-3">5 Mb/s</td>
-                <td class="px-4 py-3">15 GB</td>
-                <td class="px-4 py-3 text-lg text-gray-900">Free</td>
-                </td>
+                <td class="px-4 py-3"><%=folder.getName()%></td>
+                <td class="px-4 py-3"><%="Size"%></td>
+                <td class="px-4 py-3"><%="Download link"%></td>
             </tr>
-            <tr>
-                <td class="border-t-2 border-gray-200 px-4 py-3">Pro</td>
-                <td class="border-t-2 border-gray-200 px-4 py-3">25 Mb/s</td>
-                <td class="border-t-2 border-gray-200 px-4 py-3">25 GB</td>
-                <td class="border-t-2 border-gray-200 px-4 py-3 text-lg text-gray-900">$24</td>
-                </td>
-            </tr>
-            <tr>
-                <td class="border-t-2 border-gray-200 px-4 py-3">Business</td>
-                <td class="border-t-2 border-gray-200 px-4 py-3">36 Mb/s</td>
-                <td class="border-t-2 border-gray-200 px-4 py-3">40 GB</td>
-                <td class="border-t-2 border-gray-200 px-4 py-3 text-lg text-gray-900">$50</td>
-                </td>
-            </tr>
-            <tr>
-                <td class="border-t-2 border-b-2 border-gray-200 px-4 py-3">Exclusive</td>
-                <td class="border-t-2 border-b-2 border-gray-200 px-4 py-3">48 Mb/s</td>
-                <td class="border-t-2 border-b-2 border-gray-200 px-4 py-3">120 GB</td>
-                <td class="border-t-2 border-b-2 border-gray-200 px-4 py-3 text-lg text-gray-900">$72</td>
-                </td>
-            </tr>
+            <%
+                    }
+                }
+            %>
             </tbody>
         </table>
     </div>
