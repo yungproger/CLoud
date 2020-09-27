@@ -21,9 +21,9 @@
         </div>
         <div class="lg:w-2/6 md:w-1/2 bg-gray-200 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0" >
             <h2 class="text-gray-900 text-lg font-medium title-font mb-5">Sign In</h2>
-            <form method=post action="${pageContext.request.contextPath}/signIn">
-                <input class="bg-white rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4" placeholder="Email" type="email">
-                <input class="bg-white rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4" placeholder="Password" type="password"><br>
+            <form method="post" action="${pageContext.request.contextPath}/signIn">
+                <input class="bg-white rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4" placeholder="Email" type="email" name="email">
+                <input class="bg-white rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4" placeholder="Password" type="password" name="password"><br>
                 <button type="submit" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Button</button>
             </form>
             <p class="text-xs text-gray-500 mt-3">If you don't have an account yet, <a href="signUp.jsp" style="background-color: cornflowerblue; color: white ">Sign Up</a></p>

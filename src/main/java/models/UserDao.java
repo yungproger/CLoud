@@ -19,7 +19,7 @@ public class UserDao implements IUserDao{
 
         try {
             Class.forName("org.postgresql.Driver");
-            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres","2092002B");
+            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres","1234");
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         } catch (ClassNotFoundException e) {
